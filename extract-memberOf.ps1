@@ -11,5 +11,5 @@ $groups = Get-ADPrincipalGroupMembership $user -ResourceContextServer $resource
 # Display the groups
 Write-Host "Groups for user '$username':" -ForegroundColor Green
 foreach ($group in $groups) {
-    Write-Host "- $($group.Name)"
+    Write-Host $($group.Name)
 }
