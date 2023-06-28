@@ -10,7 +10,7 @@ foreach ($group in $adminGroups) {
     $members = Get-ADGroupMember -Identity $group
 
     # Filter, display only users and export to CSV
-    $csvPath = "C:\Path\to\output.csv"  # Specify the desired file path and name
+    $csvPath = ".\output.csv"  # Specify the desired file path and name
     $users = $members | Where-Object { $_.objectClass -eq 'user' }
     $users | Select-Object Name, SamAccountName | Export-Csv -Path $csvPath -NoTypeInformation
 }
