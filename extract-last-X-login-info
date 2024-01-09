@@ -1,0 +1,24 @@
+# Define the username for which you want to retrieve login attempts
+$userName = "username"  # Replace with the actual username
+
+# Define the number of login attempts to retrieve
+$numberOfAttempts = 10
+
+# Get the user's security event logs for logon events
+$logonEvents = Get-WinEvent -FilterHashtable @{
+    LogName = 'Security'
+    Id = 4624, 4625  # Logon and Logoff event IDs
+} -MaxEvents 1000 | Where-Object {
+    $_.Properties[5].Value -eq $userName -or
+    $_.Properties[18].Value -eq $userName
+} | Select-Object TimeCreated, Id, Properties
+
+# Display the last 10 login attempts
+$logonEvents | Select-Object -First $numberOfAttempts | ForEach-Object {
+    $logType = if ($_.Id -eq 4624) { 'Logon' } else { 'Logoff' }
+    $logTime = $_.TimeCreated
+    $logUser = $_.Properties[5].Value
+    $logStatus = if ($_.Id -eq 4624) { 'Success' } else { 'Failure' }
+
+    Write-Output "Event Type: $logType, Time: $logTime, User: $logUser, Status: $logStatus"
+}
