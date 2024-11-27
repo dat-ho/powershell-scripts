@@ -7,7 +7,7 @@ $searchBase = $domainInfo.DistinguishedName
 $domainName = $domainInfo.Name
 
 # Get all active users with additional properties and dynamically set SearchBase
-$users = Get-ADUser -Filter {Enabled -eq $true} -SearchBase $searchBase -Properties canonicalname, Enabled, DistinguishedName, EmployeeID, EmployeeNumber, SamAccountName, Name, GivenName, Initials, Surname, DisplayName, Title, EmailAddress, Description, Department, Company, CannotChangePassword, PasswordNeverExpires, PasswordNotRequired, LockedOut, AccountExpirationDate, LastLogonDate, PasswordLastSet, whenCreated, lastLogonTimestamp, msDS-UserPasswordExpiryTimeComputed, whenChanged, MemberOf
+$users = Get-ADUser -SearchBase $searchBase -Properties canonicalname, Enabled, DistinguishedName, EmployeeID, EmployeeNumber, SamAccountName, Name, GivenName, Initials, Surname, DisplayName, Title, EmailAddress, Description, Department, Company, CannotChangePassword, PasswordNeverExpires, PasswordNotRequired, LockedOut, AccountExpirationDate, LastLogonDate, PasswordLastSet, whenCreated, lastLogonTimestamp, msDS-UserPasswordExpiryTimeComputed, whenChanged, MemberOf
 
 # Array to store the user data
 $userData = @()
@@ -50,7 +50,7 @@ foreach ($user in $users) {
 }
 
 # Export the user data to a CSV file with the detected domain name
-$csvPath = ".\All_Enabled_Users_$domainName.csv"
+$csvPath = ".\All_Users_$domainName.csv"
 $userData | Export-Csv -Path $csvPath -NoTypeInformation
 
 # Add total count and timestamp to the CSV file
