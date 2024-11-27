@@ -38,13 +38,13 @@ foreach ($user in $users) {
         PasswordNeverExpires = $user.PasswordNeverExpires
         PasswordNotRequired = $user.PasswordNotRequired
         LockedOut = $user.LockedOut
-        ExpiryDate = $user.AccountExpirationDate
-        LastLogon = $user.LastLogonDate
-        PasswordLastSet = $user.PasswordLastSet
-        CreatedDate = $user.WhenCreated
-        #LastLogonTimestamp = [DateTime]::FromFileTime($user.lastLogonTimestamp)
-        #PasswordExpiryDate = [DateTime]::FromFileTime($user."msDS-UserPasswordExpiryTimeComputed")
-        whenChanged = $user.whenChanged
+        ExpiryDate = if ($user.AccountExpirationDate) { ($user.AccountExpirationDate).ToString("dd-MM-yyyy") } else { "" }
+        LastLogon = if ($user.LastLogonDate) { ($user.LastLogonDate).ToString("dd-MM-yyyy") } else { "" }
+        PasswordLastSet = if ($user.PasswordLastSet) { ($user.PasswordLastSet).ToString("dd-MM-yyyy") } else { "" }
+        CreatedDate = if ($user.WhenCreated) { ($user.WhenCreated).ToString("dd-MM-yyyy") } else { "" }
+        #LastLogonTimestamp = if ($user.lastLogonTimestamp) { [DateTime]::FromFileTime($user.lastLogonTimestamp).ToString("dd-MM-yyyy") } else { "" }
+        #PasswordExpiryDate = if ($user."msDS-UserPasswordExpiryTimeComputed") { [DateTime]::FromFileTime($user."msDS-UserPasswordExpiryTimeComputed").ToString("dd-MM-yyyy") } else { "" }
+        whenChanged = if ($user.whenChanged) { ($user.whenChanged).ToString("dd-MM-yyyy") } else { "" }
         Groups = $groups -join ", "
     }
 }
