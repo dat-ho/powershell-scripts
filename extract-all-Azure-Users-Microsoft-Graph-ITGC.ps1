@@ -1,3 +1,5 @@
+# Migrate scripts to Microsoft Graph PowerShell SDK
+
 # If you encounter errors about running scripts being disabled,
 # run the following command in your PowerShell session before executing this script:
 # Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
