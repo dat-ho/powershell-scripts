@@ -1,3 +1,4 @@
+#As of March 30, 2024, Azure AD, Azure AD Preview, and MS Online PowerShell modules are deprecated.
 # Install the AzureAD module if not installed
 if (-not (Get-Module -ListAvailable -Name AzureAD)) {
     Install-Module -Name AzureAD -AllowClobber -Force -Verbose
