@@ -7,7 +7,7 @@ $searchBase = $domainInfo.DistinguishedName
 $domainName = $domainInfo.Name
 
 # Get all active users with additional properties and dynamically set SearchBase
-$users = Get-ADUser -SearchBase $searchBase -Properties canonicalname, Enabled, DistinguishedName, EmployeeID, EmployeeNumber, SamAccountName, Name, GivenName, Initials, Surname, DisplayName, Title, EmailAddress, Description, Department, Company, CannotChangePassword, PasswordNeverExpires, PasswordNotRequired, LockedOut, AccountExpirationDate, LastLogonDate, PasswordLastSet, whenCreated, lastLogonTimestamp, msDS-UserPasswordExpiryTimeComputed, whenChanged, MemberOf
+$users = Get-ADUser -SearchBase $searchBase -Filter * -Properties canonicalname, Enabled, DistinguishedName, EmployeeID, EmployeeNumber, SamAccountName, Name, GivenName, Initials, Surname, DisplayName, Title, EmailAddress, Description, Department, Company, CannotChangePassword, PasswordNeverExpires, PasswordNotRequired, LockedOut, AccountExpirationDate, LastLogonDate, PasswordLastSet, whenCreated, lastLogonTimestamp, msDS-UserPasswordExpiryTimeComputed, whenChanged, MemberOf
 
 # Array to store the user data
 $userData = @()
