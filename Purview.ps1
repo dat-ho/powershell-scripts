@@ -4,4 +4,4 @@ Connect-IPPSSession
 (Get-LabelPolicy -Identity "Standard").Settings
 
 #Set label custom help page
-Set-LabelPolicy -Identity "IP-LabelPublishing-ForTesting-B" -AdvancedSettings @{customhelpurl="https://racwa.sharepoint.com/"}
+Set-LabelPolicy -Identity "IP-LabelPublishing-ForTesting-B" -AdvancedSettings @{customhelpurl="URL goes here"}
